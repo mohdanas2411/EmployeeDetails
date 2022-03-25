@@ -1,5 +1,7 @@
 package com.employee;
 
+import java.util.Objects;
+
 public class Address {
 
     private String distric;
@@ -57,5 +59,18 @@ public class Address {
                 ", state='" + state + '\'' +
                 ", pincode=" + pincode +
                 ", country='" + country + '\'';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return pincode == address.pincode && Objects.equals(distric, address.distric) && Objects.equals(city, address.city) && Objects.equals(state, address.state) && Objects.equals(country, address.country);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(distric, city, state, pincode, country);
     }
 }
